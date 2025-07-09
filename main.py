@@ -556,11 +556,20 @@ async def upload(bot: Client, m: Message):
 
     
 
-    await editable.edit("𝗡𝗼𝘄 𝗦𝗲𝗻𝗱 𝗧𝗵𝗲 𝗧𝗵𝘂𝗺𝗯 𝗨𝗿𝗹 𝗘𝗴 » https://graph.org/file/13a89d77002442255efad-989ac290c1b3f13b44.jpg\n\n𝗢𝗿 𝗜𝗳 𝗗𝗼𝗻'𝘁 𝗪𝗮𝗻𝘁 𝗧𝗵𝘂𝗺𝗯𝗻𝗮𝗶𝗹 𝗦𝗲𝗻𝗱 = 𝗻𝗼")
+    await editable.edit("𝐒𝐞𝐧𝐝 𝐌𝐞 𝐓𝐡𝐮𝐦𝐛𝐧𝐚𝐢𝐥 𝐔𝐑𝐋:**\nEg : https://envs.sh/az_.jpg")
     input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
     await input6.delete(True)
     await editable.delete()
+
+    thumb = raw_text6
+    if thumb.startswith("http://") or thumb.startswith("https://"):
+        try:
+            wget.download(thumb, out="thumb.jpg")
+            thumb = "thumb.jpg"
+        except Exception as e:
+            thumb = "no"
+            print(f"Error Downloading Thumbnail: {e}")
     else:
         thumb == "no"
 
@@ -568,7 +577,6 @@ async def upload(bot: Client, m: Message):
         count = 1
     else:
         count = int(raw_text)
-
     try:
         for i in range(count - 1, len(links)):
             V = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","") # .replace("mpd","m3u8")
