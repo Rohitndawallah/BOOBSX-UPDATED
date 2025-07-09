@@ -562,8 +562,8 @@ async def upload(bot: Client, m: Message):
     await input6.delete(True)
     await editable.delete()
     else:
-       thumb == "no"
-       failed_count =0
+        thumb == "no"
+
     if len(links) == 1:
         count = 1
     else:
